@@ -1,5 +1,6 @@
 package com.example.splashscreenusingnavigationcomponent
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -24,8 +25,17 @@ class SplashFragment : Fragment() {
 
         //delay
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-        },4000)
+
+            if(onBoardingIsFinished()){
+                findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+
+            }else{
+
+                findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            }
+
+
+        },3000)
 
         val view = inflater.inflate(R.layout.fragment_splash, container, false)
 
@@ -41,6 +51,14 @@ class SplashFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun onBoardingIsFinished():Boolean{
+
+        val sharedPreference = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
+
+        return  sharedPreference.getBoolean("finished",false)
+
     }
 
 

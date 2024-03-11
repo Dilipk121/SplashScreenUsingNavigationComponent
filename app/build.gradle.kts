@@ -48,4 +48,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
     implementation ("com.mikhaellopez:circularimageview:4.3.1")
+    //page indicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }
